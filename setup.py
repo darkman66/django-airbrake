@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='airbrake_django',
+    name='django_airbrake',
     version='0.0.2',
     description='A Django middleware for submitting exceptions to Airbrake.io.',
     long_description='',
