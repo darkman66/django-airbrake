@@ -10,7 +10,7 @@ This module works as django middelware. Tested with Django 1.4+
 
 # set it up
 
-First you hae to install python module for airbrake
+First what you hae to do is to install python module for airbrake
 
     $ pip install -U airbrake
 
@@ -26,12 +26,10 @@ Next install django-airbrake module as follows
     
 # Usage
 
-For Django settings file of you prroject you have to add below settings
+For Django settings file of your prroject you have to add below lines anywhere BEFORE middleware classes section
 
     AIRBRAKE = {
       'API_KEY': '[your airbrake token]',
-      'USE_SSL': True,
-      'TIMEOUT': 5,
       'ENVIRONMENT': "[envirotment name]",
       'DISABLE' : False,
       'PROJECT_ID' : "[you project ID]"
