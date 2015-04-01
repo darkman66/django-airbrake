@@ -21,8 +21,8 @@ class Client(object):
         if getattr(self, '_settings', None):
             return self._settings
 
-        self._settings = Client.DEFAULTS
-        self._settings.update(getattr(settings, 'AIRBRAKE', {}))
+        self._settings = {}
+        self._settings.update({'AIRBRAKE' : getattr(settings, 'AIRBRAKE', {}) })
         return self._settings
 
 
@@ -31,10 +31,10 @@ class Client(object):
             'Content-Type': 'text/xml'
         }
         try:
-            if not self.settings.AIRBRAKE['DISABLE']:
-                air_log = airbrake.getLogger(api_key = self.settings.AIRBRAKE['API_KEY'],
-                                            project_id = self.settings.AIRBRAKE['PROJECT_ID'],
-                                             environment = self.settings.AIRBRAKE['ENVIRONMENT'])
+            if self.settings['AIRBRAKE'].get('DISABLE', True) == True:
+                air_log = airbrake.getLogger(api_key = settings['AIRBRAKE']['API_KEY'],
+                                            project_id = settings['AIRBRAKE']['PROJECT_ID'],
+                                             environment = settings['AIRBRAKE']['ENVIRONMENT'])
                 air_log.exception(str(exception))
         except Exception ,e:
             print 'Airbrake exception: %s\n\n%s' % (e, traceback.format_exc())
